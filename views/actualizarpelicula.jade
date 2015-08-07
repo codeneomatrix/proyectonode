@@ -54,7 +54,8 @@ block content
 						label(for="campoPremios") Premios
 						input(type="text" value="#{peli.Awards}" class="form-control" id="campoPremios" name="premios" placeholder="Premios" required)
 						label(for="campoSinopsis") Sinopsis
-						textarea(class="form-control" rows="5" id="campoSinopsis" name="texto" placeholder="Sinopsis" required) #{peli.Plot}
+						textarea(class="form-control" rows="8" id="campoSinopsis" name="texto" placeholder="Sinopsis" required) #{peli.Plot}
 						input(type="file" name="imagen")
 						br
 						button(type="submit" class="btn btn-warning") Editar
+						a(href="/peliculas" class="btn btn-default" role="button") Regresar
