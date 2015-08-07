@@ -1,35 +1,52 @@
 extends ./layout.jade
 block content
-	div(class="well span12 center-block")
-		div(class="panel panel-info center-block")
-			div(class="panel-heading center-block")
-				div(class="panel-heading")
-					h3(class="panel-title") CRUD DE PELICULAS
-				div(class="panel-body")
-					table(class="table table-bordered table-hover " data-sortable="true" data-toggle="table" )
-						thead 
+	nav(class="navbar navbar-default" style="background-color: #037E8C;")
+		div(class="container-fluid")
+			div(class="navbar-header")
+				button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" style="background-color: #024959;")
+					span(class="sr-only") Toggle navigation
+					span(class="icon-bar")
+					span(class="icon-bar")
+					span(class="icon-bar")
+				a(class="navbar-brand navegacion" href="/")
+					img(alt="" src="/imgs/titulo-icono.png" style="width: 1.5em; height: 1.5em;")
+			div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-1")
+				ul(class="nav navbar-nav navbar-right")
+					li
+						a(href="/" style="color: white;") Inicio
+					li
+						a(href="#" style="color: white;") Pelicula
+					li(class="active")
+						a(href="/login" style="color: black;") Login
+						span(class="sr-only") (current)
+
+	div(class="container" style="background-color: #FFFFFA; border: 4px solid #024959; border-radius: 5px;")
+		div(class="row" style="background-color: #D96459;")
+			div(class="col-md-12")
+				h1 #[strong(style="color: white;") CRUD de Peliculas]
+		div(class="row")
+			div(class="col-md-12")
+				table(class="table table-striped")
+					thead
+						tr
+							th Titulo
+							th Año
+							th Editar
+							th Eliminar
+					tbody
+						each x in peliculas
 							tr
-								th Titulo
-									a(href="/newpelicula")
-										img(src="imgs/add.png" class="center-block" width="20px")
-								th Año		    
-								th Accion     
-						tbody 
-							each x in peliculas
-								tr(class="info" )
-									td #{x.Title}
-									td #{x.Year}
-									td 
-										a(href="/pelicula/edit/#{x._id}") 
-											img(src="imgs/pencil.png" width="15px")
-										a(href="/pelicula/#{x._id}/delete") 
-											img(src="imgs/minus.png" width="15px")
-							tr 
-								td 
-									a(href="/registraralumno/")
-									i(class="icon-plus-sign")
-
-
-							
-
-		
+								td #{x.Title}
+								td #{x.Year}
+								td
+									a(href="/comentario/edit/#{x.id}" class="btn btn-warning" role="button")
+										img(src="/imgs/pencil.png" width="30px")
+								td
+									a(href="/comentario/#{x.id}/delete" class="btn btn-danger" role="button")
+										img(src="/imgs/minus.png" width="30px")
+		div(class="row")
+			div(class="col-md-8")
+				h1 #[strong(style="color: black;") Agregar Pelicula]
+			div(class="col-md-4")
+				a(href="/newpelicula" class="btn btn-success" role="button")
+					img(src="imgs/add.png" width="30px")

@@ -1,28 +1,60 @@
 extends ./layout.jade
 block content
-	div(class="well span12 center-block")
-		div(class="panel panel-info center-block")
-			div(class="panel-heading center-block")
-				div(class="panel-body")
-					div( class="span6" class="center-block")
-						form(class="form-signin" method="POST" action="/pelicula/#{peli.id}?_method=put")
-							h2(class="form-signin-heading") Modificar pelicula
-							input(type="text" required value="#{peli.Title}"  name="titulo" placeholder="Titulo" class="input-block-level" onkeypress="upperCase('titulo');")
-							input(type="text" required value="#{peli.Year}" name="año" class="col_6" placeholder="Año" class="input-block-level")
-							input(type="text" required value="#{peli.Rated}" name="clasificacion" class="col_6" placeholder="clasificacion" class="input-block-level")
-							input(type="text" required value="#{peli.Released}" name="estreno" class="col_6" placeholder="estreno" class="input-block-level")
-							input(type="text" required value="#{peli.Runtime}" name="duracion" class="col_6" placeholder="duracion" class="input-block-level")
-							input(type="text" required value="#{peli.Genre}" name="generos" class="col_6" placeholder="generos" class="input-block-level")
-							input(type="text" required value="#{peli.Director}" name="director" class="col_6" placeholder="director" class="input-block-level")
-							input(type="text" required value="#{peli.Writer}" name="escritor" class="col_6" placeholder="escritor" class="input-block-level")
-							input(type="text" required value="#{peli.Actors}" name="actores" class="col_6" placeholder="actores" class="input-block-level")
-							input(type="text" required value="#{peli.Language}" name="lenguaje" class="col_6" placeholder="lenguaje" class="input-block-level")
-							input(type="text" required value="#{peli.Country}" name="locacion" class="col_6" placeholder="locacion" class="input-block-level")
-							input(type="text" required value="#{peli.Awards}" name="premios" class="col_6" placeholder="premios" class="input-block-level")
-							textarea(type="text" required  name="texto"  placeholder="Sinopsis" class="input-block-level") #{peli.Plot}
-							input(type="file" name="imagen" class="input-block-level")
-							br
-							button(class="btn btn-large btn-primary" type="submit") Guardar
+	nav(class="navbar navbar-default" style="background-color: #037E8C;")
+		div(class="container-fluid")
+			div(class="navbar-header")
+				button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" style="background-color: #024959;")
+					span(class="sr-only") Toggle navigation
+					span(class="icon-bar")
+					span(class="icon-bar")
+					span(class="icon-bar")
+				a(class="navbar-brand navegacion" href="/")
+					img(alt="" src="/imgs/titulo-icono.png" style="width: 1.5em; height: 1.5em;")
+			div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-1")
+				ul(class="nav navbar-nav navbar-right")
+					li
+						a(href="/" style="color: white;") Inicio
+					li
+						a(href="#" style="color: white;") Pelicula
+					li(class="active")
+						a(href="/login" style="color: black;") Login
+						span(class="sr-only") (current)
 
-
-
+	div(class="container" style="background-color: #FFFFFA; border: 4px solid #024959; border-radius: 5px;")
+		div(class="row" style="background-color: #D96459;")
+			div(class="col-md-12")
+				h1 #[strong(style="color: white;") Editar Pelicula]
+		br
+		div(class="row")
+			div(class="col-md-12")
+				form(method="post" action="/pelicula/#{peli.id}?_method=put")
+					div(class="form-group")
+						label(for="campoTitulo") Titulo
+						input(type="text" value="#{peli.Title}" class="form-control" id="campoTitulo" name="titulo" placeholder="Titulo" onkeypress="upperCase('titulo');" required)
+						label(for="campoAño") Año
+						input(type="text" value="#{peli.Year}" class="form-control" id="campoAño" name="año" placeholder="Año" required)
+						label(for="campoClasificacion") Clasificacion
+						input(type="text" value="#{peli.Rated}" class="form-control" id="campoClasificacion" name="Clasificacion" placeholder="Clasificacion" required)
+						label(for="campoEstreno") Estreno
+						input(type="text" value="#{peli.Released}" class="form-control" id="campoEstreno" name="estreno" placeholder="Estreno" required)
+						label(for="campoDuracion") Duracion
+						input(type="text" value="#{peli.Runtime}" class="form-control" id="campoDuracion" name="duracion" placeholder="Duracion" required)
+						label(for="campoGeneros") Generos
+						input(type="text" value="#{peli.Genre}" class="form-control" id="campoGeneros" name="generos" placeholder="Generos" required)
+						label(for="campoDirector") Director
+						input(type="text" value="#{peli.Director}" class="form-control" id="campoDirector" name="director" placeholder="Director" required)
+						label(for="campoEscritor") Escritor
+						input(type="text" value="#{peli.Writer}" class="form-control" id="campoEscritor" name="escritor" placeholder="Escritor" required)
+						label(for="campoActores") Actores
+						input(type="text" value="#{peli.Actors}" class="form-control" id="campoActores" name="actores" placeholder="Actores" required)
+						label(for="campoLenguaje") Lenguaje
+						input(type="text" value="#{peli.Language}" class="form-control" id="campoLenguaje" name="lenguaje" placeholder="Lenguaje" required)
+						label(for="campoLocacion") Locacion
+						input(type="text" value="#{peli.Country}" class="form-control" id="campoLocacion" name="locacion" placeholder="Locacion" required)
+						label(for="campoPremios") Premios
+						input(type="text" value="#{peli.Awards}" class="form-control" id="campoPremios" name="premios" placeholder="Premios" required)
+						label(for="campoSinopsis") Sinopsis
+						textarea(class="form-control" rows="5" id="campoSinopsis" name="texto" placeholder="Sinopsis" required) #{peli.Plot}
+						input(type="file" name="imagen")
+						br
+						button(type="submit" class="btn btn-warning") Editar
